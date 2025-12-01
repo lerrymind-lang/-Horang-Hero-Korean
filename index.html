@@ -1,0 +1,1862 @@
+<!doctype html>
+<html lang="th">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HORANG HERO - เรียนภาษาเกาหลีสนุกๆ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Itim&amp;family=Noto+Sans+KR:wght@400;700;900&amp;family=Noto+Sans+Thai:wght@400;700&amp;display=swap" rel="stylesheet">
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="/_sdk/data_sdk.js"></script>
+  <style>
+        body {
+            box-sizing: border-box;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            font-family: 'Itim';
+            background: linear-gradient(135deg,#0066FF 100%);
+            color: #2d3748;
+        }
+
+        .app-wrapper {
+            width: 100%;
+            min-height: 100%;
+        }
+
+        nav {
+            background: linear-gradient(90deg, #FF0000, #0066FF);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            width: 100%;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .logo-icon {
+            width: 60px;
+            height: 60px;
+            background: logo-icon(135deg, #FFD700, #FF8C00);
+            border-radius: 25%;
+            display: flex;
+            align-items: center;
+            justify-content:center;
+            font-size: 2.5rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            border: 3px solid white;
+        }
+
+        .nav-menu {
+            display: flex;
+            justify-content:space-between;
+            list-style: none;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            justify-content: flex-end;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: all 0.3s;
+            cursor: pointer;
+            background: rgba(255,255,255,0.2);
+            border: 2px solid transparent;
+        }
+
+        .nav-link:hover {
+            background: white;
+            color: #FF0000;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .nav-link.active {
+            background: #FFD700;
+            color: #FF0000;
+            font-weight: 700;
+            border: 2px solid white;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        .content-section {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #4c00ff, #ff0000);
+            border-radius: 30px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            margin-bottom: 3rem;
+            border: 5px solid #ffffff;
+        }
+
+        .hero h1 {
+            font-size: 1.5em;
+            color: #FF0000;
+            margin-bottom: 5px;
+            font-family: 'Itim';
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.2);
+            font-weight: 900;
+        }
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            border: 4px solid transparent;
+        }
+
+        .card:nth-child(1) { border-color: #FF0000; }
+        .card:nth-child(2) { border-color: #0066FF; }
+        .card:nth-child(3) { border-color: #FFD700; }
+        .card:nth-child(4) { border-color: #FF0000; }
+
+        .card:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .card-icon {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .card:nth-child(1) .card-icon { background: linear-gradient(135deg, #FF0000, #FF6B6B); }
+        .card:nth-child(2) .card-icon { background: linear-gradient(135deg, #0066FF, #4DA6FF); }
+        .card:nth-child(3) .card-icon { background: linear-gradient(135deg, #FFD700, #FFA500); }
+        .card:nth-child(4) .card-icon { background: linear-gradient(135deg, #FF0000, #0066FF); }
+
+        .card h3 {
+            font-size: 1.6rem;
+            color: #2d3748;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .card p {
+            color: #718096;
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        .section-header {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            border-radius: 25px;
+            padding: 2.5rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            border: 4px solid #FF0000;
+        }
+
+        .section-header h2 {
+            font-size: 2.8rem;
+            color: #FF0000;
+            margin-bottom: 0.5rem;
+            font-weight: 900;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .section-header p {
+            color: #0066FF;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .alphabet-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .alphabet-item {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+            transition: transform 0.3s;
+            border: 3px solid #FFD700;
+        }
+
+        .alphabet-item:hover {
+            transform: scale(1.1) rotate(5deg);
+            border-color: #FF0000;
+        }
+
+        .korean {
+            display: block;
+            font-size: 3.5rem;
+            font-family: 'Noto Sans KR', sans-serif;
+            color: #0066FF;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .thai {
+            display: block;
+            font-size: 1.3rem;
+            color: #FF0000;
+            font-weight: 600;
+        }
+
+        .section-title {
+            background: linear-gradient(90deg, #FF0000, #0066FF);
+            border-radius: 15px;
+            padding: 1rem 2.5rem;
+            margin: 3rem 0 1.5rem;
+            display: inline-block;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .section-title h3 {
+            color: white;
+            font-size: 2.2rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .game-container {
+            background: white;
+            border-radius: 25px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            border: 4px solid #FFD700;
+        }
+
+        .level-selection {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .level-card {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 4px solid #FF0000;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .level-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+
+        .level-card.level-1 { background: linear-gradient(135deg, #90EE90, #32CD32); }
+        .level-card.level-2 { background: linear-gradient(135deg, #FFD700, #FFA500); }
+        .level-card.level-3 { background: linear-gradient(135deg, #FF6B6B, #FF0000); }
+        .level-card.level-4 { background: linear-gradient(135deg, #9370DB, #4B0082); }
+
+        .level-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: white;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+            margin-bottom: 0.5rem;
+        }
+
+        .level-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        .level-desc {
+            color: white;
+            font-weight: 600;
+        }
+
+        .game-area {
+            display: none;
+        }
+
+        .game-area.active {
+            display: block;
+        }
+
+        .game-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .hearts {
+            font-size: 2rem;
+        }
+
+        .timer-display {
+            font-size: 2rem;
+            background: linear-gradient(135deg, #0066FF, #4DA6FF);
+            padding: 0.8rem 1.5rem;
+            border-radius: 15px;
+            font-weight: 700;
+            color: white;
+            border: 3px solid white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .timer-display.warning {
+            background: linear-gradient(135deg, #FF6B6B, #FF0000);
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .score-display {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            padding: 1rem 2rem;
+            border-radius: 15px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #FF0000;
+            border: 3px solid #FF0000;
+        }
+
+        .question-box {
+            background: linear-gradient(135deg, #E3F2FD, #BBDEFB);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            text-align: center;
+            border: 4px solid #0066FF;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .question-text {
+            font-size: 2rem;
+            color: #0066FF;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .option-btn {
+            background: white;
+            border: 4px solid #FFD700;
+            border-radius: 15px;
+            padding: 2rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: #2d3748;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        .option-btn:hover {
+            background: #FFD700;
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .option-btn:disabled {
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        .option-btn.correct {
+            background: #90EE90;
+            border-color: #32CD32;
+            animation: correct 0.5s;
+        }
+
+        .option-btn.wrong {
+            background: #FF6B6B;
+            border-color: #FF0000;
+            animation: wrong 0.5s;
+        }
+
+        .memory-card-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .memory-card {
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            border: 4px solid #FF0000;
+            border-radius: 15px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            font-family: 'Noto Sans KR', sans-serif;
+            transition: all 0.3s;
+            position: relative;
+            transform-style: preserve-3d;
+        }
+
+        .memory-card:hover:not(.flipped):not(.matched) {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+        .memory-card.flipped {
+            background: white;
+            border-color: #0066FF;
+        }
+
+        .memory-card.matched {
+            background: #90EE90;
+            border-color: #32CD32;
+            cursor: default;
+            animation: matchPulse 0.5s;
+        }
+
+        .memory-card.wrong {
+            animation: shake 0.5s;
+        }
+
+        .card-back {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+
+        .card-front {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+        }
+
+        .memory-card.flipped .card-back {
+            display: none;
+        }
+
+        .memory-card.flipped .card-front {
+            display: flex;
+        }
+
+        @keyframes matchPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        @media (max-width: 768px) {
+            .memory-card-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @keyframes correct {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        @keyframes wrong {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #FF0000, #0066FF);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 1rem 2.5rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            margin: 1rem 0.5rem;
+            font-family: 'Noto Sans Thai', sans-serif;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .result-screen {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .result-score {
+            font-size: 4rem;
+            color: #FFD700;
+            font-weight: 900;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.2);
+            margin: 1rem 0;
+        }
+
+        .result-message {
+            font-size: 2rem;
+            color: #FF0000;
+            font-weight: 700;
+            margin: 1rem 0;
+        }
+
+        .grammar-grid {
+            display: grid;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .grammar-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+            border-left: 8px solid #FF0000;
+            transition: transform 0.3s;
+        }
+
+        .grammar-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        .grammar-title {
+            font-size: 1.8rem;
+            color: #FF0000;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        .grammar-explanation {
+            color: #2d3748;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .grammar-example {
+            background: #FFF9E6;
+            border-left: 4px solid #FFD700;
+            padding: 1rem;
+            margin-top: 1rem;
+            border-radius: 8px;
+        }
+
+        .grammar-example strong {
+            color: #0066FF;
+            font-size: 1.3rem;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        .toast {
+            position: fixed;
+            top: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #FF0000, #FF6B6B);
+            color: white;
+            padding: 1.5rem 3rem;
+            border-radius: 15px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            z-index: 10000;
+            display: none;
+            border: 3px solid white;
+        }
+
+        .toast.show {
+            display: block;
+            animation: slideDown 0.3s;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateX(-50%) translateY(-100px); opacity: 0; }
+            to { transform: translateX(-50%) translateY(0); opacity: 1; }
+        }
+
+        .high-scores {
+            background: linear-gradient(135deg, #E3F2FD, #BBDEFB);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-top: 2rem;
+            border: 4px solid #0066FF;
+        }
+
+        .high-scores h3 {
+            color: #0066FF;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .score-list {
+            list-style: none;
+        }
+
+        .score-item {
+            background: white;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 2px solid #FFD700;
+        }
+
+        .score-level {
+            color: #FF0000;
+            font-weight: 700;
+        }
+
+        .score-points {
+            color: #0066FF;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .nav-menu {
+                justify-content: center;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .logo {
+                font-size: 1rem;
+            }
+
+            .logo-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 2rem;
+            }
+        }
+    </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="https://cdn.tailwindcss.com" type="text/javascript"></script>
+ </head>
+ <body>
+  <div class="app-wrapper">
+   <nav>
+    <div class="nav-container">
+     <div class="logo">
+      <div class="logo-icon">
+       <img src="tiger.GIF.gif" style="border-radius:25%; width: 60px; height: 60px;">
+      </div><span id="site-title"> HORANG HERO KOREAN WEBSITE </span>
+     </div>
+     <ul class="nav-menu">
+      <li><a class="nav-link active" data-page="home">หน้าแรก</a></li>
+      <li><a class="nav-link" data-page="alphabet">สระ-พยัญชนะ</a></li>
+      <li><a class="nav-link" data-page="vocabulary">คำศัพท์พื้นฐาน</a></li>
+      <li><a class="nav-link" data-page="practice">แบบฝึกหัด</a></li>
+      <li><a class="nav-link" data-page="grammar">ไวยากรณ์</a></li>
+     </ul>
+    </div>
+   </nav>
+   <main class="container"><!-- หน้าแรก -->
+    <section id="home" class="content-section active">
+     <div class="hero">
+      <h1 id="welcome-heading"><img src="WELCOME.gif" style="width: 100%;" border-redius: 50%></h1>
+     </div>
+     <div class="cards">
+      <div class="card" onclick="showPage('alphabet')">
+       <div class="card-icon">
+        <img src="picture/1.png" style="width: 90px;" height="90px"; border-radius: 60%;>
+       </div>
+       <h3 id="card-1-title">สระและพยัญชนะ</h3>
+       <p id="card-1-description">เรียนรู้ตัวอักษรเกาหลี ฮันกึล (한글) ตั้งแต่เริ่มต้น พยัญชนะเดี่ยว พยัญชนะคู่ และสระทั้งหมด</p>
+      </div>
+      <div class="card" onclick="showPage('vocabulary')">
+       <div class="card-icon">
+        <img src="picture/2.png" style="width: 90px;" height="90px"; border-radius: 60%;>
+       </div>
+       <h3 id="card-2-title">คำศัพท์พื้นฐาน</h3>
+       <p id="card-2-description">คำศัพท์ที่ใช้บ่อยในชีวิตประจำวัน ครอบครัว อาหาร สี ตัวเลข และอีกมากมาย</p>
+      </div>
+      <div class="card" onclick="showPage('practice')">
+       <div class="card-icon">
+        <img src="picture/3.png" style="width: 90px;" height="90px"; border-radius: 60%;>
+       </div>
+       <h3 id="card-3-title">แบบฝึกหัด</h3>
+       <p id="card-3-description">เกม 4 ด่าน! จับคู่ตัวอักษร ทายคำศัพท์ ประโยคในชีวิตจริง และโหมดเซียน พร้อมระบบคะแนน</p>
+      </div>
+      <div class="card" onclick="showPage('grammar')">
+       <div class="card-icon">
+        <img src="picture/4.png" style="width: 90px;" height="90px"; border-radius: 60%;>
+       </div>
+       <h3 id="card-4-title">ไวยากรณ์</h3>
+       <p id="card-4-description">10 ไวยากรณ์พื้นฐานที่ต้องรู้! เรียนรู้โครงสร้างประโยคและการใช้ภาษาเกาหลีอย่างถูกต้อง</p>
+      </div>
+     </div>
+    </section><!-- หน้าสระ-พยัญชนะ -->
+    <section id="alphabet" class="content-section">
+     <div class="section-header">
+      <h2> สระและพยัญชนะเกาหลี</h2>
+      <p>เรียนรู้ตัวอักษรฮันกึล พื้นฐานสำคัญของภาษาเกาหลี</p>
+     </div>
+     <div class="section-title">
+      <h3> พยัญชนะเดี่ยว (Basic Consonants)</h3>
+     </div>
+     <div class="alphabet-grid">
+      <div class="alphabet-item">
+       <span class="korean">ㄱ</span><span class="thai">ก (g/k)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">ㄴ</span><span class="thai">น (n)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">ㄷ</span><span class="thai">ด (d/t)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">ㄹ</span><span class="thai">ร/ล (r/l)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">ㅁ</span><span class="thai">ม (m)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">ㅂ</span><span class="thai">บ (b/p)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">ㅅ</span><span class="thai">ซ (s)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">ㅇ</span><span class="thai">-/ง (ng)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">ㅈ</span><span class="thai">จ (j)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">ㅊ</span><span class="thai">ช (ch)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">ㅋ</span><span class="thai">ค (k)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">ㅌ</span><span class="thai">ท (t)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">ㅍ</span><span class="thai">พ (p)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">ㅎ</span><span class="thai">ฮ (h)</span>
+      </div>
+     </div>
+     <div class="section-title">
+      <h3> พยัญชนะคู่ (Double Consonants)</h3>
+     </div>
+     <div class="alphabet-grid">
+      <div class="alphabet-item">
+       <span class="korean">ㄲ</span><span class="thai">กก (kk)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">ㄸ</span><span class="thai">ดด (tt)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">ㅃ</span><span class="thai">บบ (pp)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">ㅆ</span><span class="thai">ซซ (ss)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">ㅉ</span><span class="thai">จจ (jj)</span>
+      </div>
+     </div>
+     <div class="section-title">
+      <h3> สระ (Vowels)</h3>
+     </div>
+     <div class="alphabet-grid">
+      <div class="alphabet-item">
+       <span class="korean">ㅏ</span><span class="thai">อา (a)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">ㅑ</span><span class="thai">ยา (ya)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">ㅓ</span><span class="thai">ออ (eo)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">ㅕ</span><span class="thai">ยอ (yeo)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">ㅗ</span><span class="thai">โอ (o)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">ㅛ</span><span class="thai">โย (yo)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">ㅜ</span><span class="thai">อู (u)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">ㅠ</span><span class="thai">ยู (yu)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">ㅡ</span><span class="thai">อือ (eu)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">ㅣ</span><span class="thai">อี (i)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">ㅐ</span><span class="thai">แอ (ae)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">ㅒ</span><span class="thai">แย (yae)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">ㅔ</span><span class="thai">เอ (e)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">ㅖ</span><span class="thai">เย (ye)</span>
+      </div>
+     </div>
+    </section><!-- หน้าคำศัพท์ -->
+    <section id="vocabulary" class="content-section">
+     <div class="section-header">
+      <h2> คำศัพท์พื้นฐาน</h2>
+      <p>คำศัพท์ที่ใช้บ่อยในชีวิตประจำวัน</p>
+     </div>
+     <div class="section-title">
+      <h3> ครอบครัว (Family)</h3>
+     </div>
+     <div class="alphabet-grid">
+      <div class="alphabet-item">
+       <span class="korean">아빠</span><span class="thai">พ่อ (appa)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">엄마</span><span class="thai">แม่ (eomma)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">형</span><span class="thai">พี่ชาย (hyeong)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">누나</span><span class="thai">พี่สาว (nuna)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">오빠</span><span class="thai">พี่ชาย-ผู้หญิงเรียก (oppa)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">언니</span><span class="thai">พี่สาว-ผู้หญิงเรียก (eonni)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">동생</span><span class="thai">น้อง (dongsaeng)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">남동생</span><span class="thai">น้องชาย (namdongsaeng)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">여동생</span><span class="thai">น้องสาว (yeodongsaeng)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">할아버지</span><span class="thai">ปู่/ตา (harabeoji)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">할머니</span><span class="thai">ย่า/ยาย (halmeoni)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">아들</span><span class="thai">ลูกชาย (adeul)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">딸</span><span class="thai">ลูกสาว (ttal)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">삼촌</span><span class="thai">ลุง/อา (samchon)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">이모</span><span class="thai">ป้า/น้า (imo)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">가족</span><span class="thai">ครอบครัว (gajok)</span>
+      </div>
+     </div>
+     <div class="section-title">
+      <h3> อาหาร (Food)</h3>
+     </div>
+     <div class="alphabet-grid">
+      <div class="alphabet-item">
+       <span class="korean">밥</span><span class="thai">ข้าว (bap)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">물</span><span class="thai">น้ำ (mul)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">김치</span><span class="thai">กิมจิ (kimchi)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">라면</span><span class="thai">ราเมง (ramyeon)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">고기</span><span class="thai">เนื้อ (gogi)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">과일</span><span class="thai">ผลไม้ (gwail)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">빵</span><span class="thai">ขนมปัง (ppang)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">우유</span><span class="thai">นม (uyu)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">커피</span><span class="thai">กาแฟ (keopi)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">차</span><span class="thai">ชา (cha)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">계란</span><span class="thai">ไข่ (gyeran)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">생선</span><span class="thai">ปลา (saengseon)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">야채</span><span class="thai">ผัก (yachae)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">소금</span><span class="thai">เกลือ (sogeum)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">설탕</span><span class="thai">น้ำตาล (seoltang)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">국</span><span class="thai">ซุป (guk)</span>
+      </div>
+     </div>
+     <div class="section-title">
+      <h3> สี (Colors)</h3>
+     </div>
+     <div class="alphabet-grid">
+      <div class="alphabet-item">
+       <span class="korean">빨강</span><span class="thai">แดง (ppalgang)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">파랑</span><span class="thai">น้ำเงิน (parang)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">노랑</span><span class="thai">เหลือง (norang)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">초록</span><span class="thai">เขียว (chorok)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">검정</span><span class="thai">ดำ (geomjeong)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">하양</span><span class="thai">ขาว (hayang)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">주황</span><span class="thai">ส้ม (juhwang)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">분홍</span><span class="thai">ชมพู (bunhong)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">보라</span><span class="thai">ม่วง (bora)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">갈색</span><span class="thai">น้ำตาล (galsaek)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">회색</span><span class="thai">เทา (hoesaek)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">금색</span><span class="thai">ทอง (geumsaek)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">은색</span><span class="thai">เงิน (eunsaek)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">하늘색</span><span class="thai">ฟ้า (haneulsaek)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">연두색</span><span class="thai">เขียวอ่อน (yeondusaek)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">남색</span><span class="thai">น้ำเงินเข้ม (namsaek)</span>
+      </div>
+     </div>
+     <div class="section-title">
+      <h3> ตัวเลข (Numbers)</h3>
+     </div>
+     <div class="alphabet-grid">
+      <div class="alphabet-item">
+       <span class="korean">하나</span><span class="thai">หนึ่ง (hana)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">둘</span><span class="thai">สอง (dul)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">셋</span><span class="thai">สาม (set)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">넷</span><span class="thai">สี่ (net)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">다섯</span><span class="thai">ห้า (daseot)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">여섯</span><span class="thai">หก (yeoseot)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">일곱</span><span class="thai">เจ็ด (ilgop)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">여덟</span><span class="thai">แปด (yeodeol)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">아홉</span><span class="thai">เก้า (ahop)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">열</span><span class="thai">สิบ (yeol)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">스물</span><span class="thai">ยี่สิบ (seumul)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">서른</span><span class="thai">สามสิบ (seoreun)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">마흔</span><span class="thai">สี่สิบ (maheun)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">쉰</span><span class="thai">ห้าสิบ (swin)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">백</span><span class="thai">หนึ่งร้อย (baek)</span>
+      </div>
+      <div class="alphabet-item">
+       <span class="korean">천</span><span class="thai">หนึ่งพัน (cheon)</span>
+      </div>
+     </div>
+    </section><!-- หน้าแบบฝึกหัด -->
+    <section id="practice" class="content-section">
+     <div class="section-header">
+      <h2>แบบฝึกหัด - เกมสนุกๆ</h2>
+      <p>ทดสอบความรู้ของคุณผ่านเกม 4 ระดับ!</p>
+     </div>
+     <div class="game-container" id="level-select">
+      <h2 style="text-align: center; color: #FF0000; font-size: 2.5rem; margin-bottom: 2rem;">เลือกระดับความยาก</h2>
+      <div class="level-selection">
+       <div class="level-card level-1" onclick="startGame(1)">
+        <div class="level-number">
+         Level 1
+        </div>
+        <div class="level-title">
+         🌱 ง่าย
+        </div>
+        <div class="level-desc">
+         จับคู่ตัวอักษร (2 นาที)
+        </div>
+       </div>
+       <div class="level-card level-2" onclick="startGame(2)">
+        <div class="level-number">
+         Level 2
+        </div>
+        <div class="level-title">
+         ⭐ ปานกลาง
+        </div>
+        <div class="level-desc">
+         ทายคำศัพท์
+        </div>
+       </div>
+       <div class="level-card level-3" onclick="startGame(3)">
+        <div class="level-number">
+         Level 3
+        </div>
+        <div class="level-title">
+         🔥 ยาก
+        </div>
+        <div class="level-desc">
+         ประโยคในชีวิตจริง
+        </div>
+       </div>
+       <div class="level-card level-4" onclick="startGame(4)">
+        <div class="level-number">
+         Level 4
+        </div>
+        <div class="level-title">
+         👑 เซียน
+        </div>
+        <div class="level-desc">
+         รวมทุกหมวด
+        </div>
+       </div>
+      </div>
+      <div class="high-scores" id="high-scores-display">
+       <h3>🏆 คะแนนสูงสุดของคุณ</h3>
+       <ul class="score-list" id="scores-list">
+        <li style="text-align: center; color: #718096;">ยังไม่มีคะแนน เริ่มเล่นเกมเลย!</li>
+       </ul>
+      </div>
+     </div>
+     <div class="game-container game-area" id="game-play">
+      <div class="game-header"><button class="btn" onclick="backToLevelSelect()">🏠 กลับหน้าหลัก</button>
+       <div class="hearts" id="hearts">
+        ❤️❤️❤️
+       </div>
+       <div class="timer-display" id="timer" style="display: none;">
+        ⏱️ <span id="time-display">2:00</span>
+       </div>
+       <div class="score-display">
+        คะแนน: <span id="score">0</span>
+       </div>
+      </div>
+      <div class="question-box">
+       <div class="question-text" id="question-text">
+        Loading...
+       </div>
+      </div>
+      <div class="options-grid" id="options">
+      </div>
+      <div style="text-align: center; margin-top: 2rem;">
+       <div id="question-counter" style="font-size: 1.3rem; color: #0066FF; font-weight: 700;">
+        คำถามที่ 1/10
+       </div>
+      </div>
+     </div>
+     <div class="game-container game-area" id="game-result">
+      <div class="result-screen">
+       <h2 style="color: #FF0000; font-size: 3rem; margin-bottom: 1rem;">🎉 เกมจบแล้ว!</h2>
+       <div class="result-score" id="final-score">
+        0
+       </div>
+       <div class="result-message" id="result-message">
+        ยอดเยี่ยม!
+       </div><button class="btn" onclick="backToLevelSelect()">🔄 เล่นอีกครั้ง</button> <button class="btn" onclick="showPage('home')">🏠 กลับหน้าแรก</button>
+      </div>
+     </div>
+    </section><!-- หน้าไวยากรณ์ -->
+    <section id="grammar" class="content-section">
+     <div class="section-header">
+      <h2>📖 ไวยากรณ์เกาหลี</h2>
+      <p>10 ไวยากรณ์พื้นฐานที่ต้องรู้!</p>
+     </div>
+     <div class="grammar-grid">
+      <div class="grammar-card">
+       <div class="grammar-title">
+        1. 이다/입니다 - คำกริยา "เป็น"
+       </div>
+       <div class="grammar-explanation">
+        ใช้บอกว่าสิ่งหนึ่งเป็นอะไร คล้ายกับ "is/am/are" ในภาษาอังกฤษ<br>
+         • 이다 (ida) = เป็น (แบบไม่สุภาพ)<br>
+         • 입니다 (imnida) = เป็น (แบบสุภาพ)
+       </div>
+       <div class="grammar-example"><strong>나는 학생이다</strong> (na-neun haksaeng-ida)<br>
+         แปล: ฉันเป็นนักเรียน
+       </div>
+      </div>
+      <div class="grammar-card">
+       <div class="grammar-title">
+        2. 은/는 - อนุภาคประธาน
+       </div>
+       <div class="grammar-explanation">
+        ใช้ติดท้ายคำนามเพื่อบอกว่าคำนั้นเป็นประธานของประโยค<br>
+         • 은 (eun) = ใช้กับคำที่มีพยัญชนะท้าย<br>
+         • 는 (neun) = ใช้กับคำที่มีสระท้าย
+       </div>
+       <div class="grammar-example"><strong>학생은</strong> (haksaeng-eun) = นักเรียน (ประธาน)<br><strong>나는</strong> (na-neun) = ฉัน (ประธาน)
+       </div>
+      </div>
+      <div class="grammar-card">
+       <div class="grammar-title">
+        3. 을/를 - อนุภาคกรรม
+       </div>
+       <div class="grammar-explanation">
+        ใช้ติดท้ายคำนามเพื่อบอกว่าคำนั้นเป็นกรรมของประโยค<br>
+         • 을 (eul) = ใช้กับคำที่มีพยัญชนะท้าย<br>
+         • 를 (reul) = ใช้กับคำที่มีสระท้าย
+       </div>
+       <div class="grammar-example"><strong>밥을 먹다</strong> (bap-eul meokda)<br>
+         แปล: กินข้าว
+       </div>
+      </div>
+      <div class="grammar-card">
+       <div class="grammar-title">
+        4. 이/가 - อนุภาคประธาน (เน้น)
+       </div>
+       <div class="grammar-explanation">
+        คล้ายกับ 은/는 แต่ใช้เมื่อต้องการเน้นประธาน<br>
+         • 이 (i) = ใช้กับคำที่มีพยัญชนะท้าย<br>
+         • 가 (ga) = ใช้กับคำที่มีสระท้าย
+       </div>
+       <div class="grammar-example"><strong>누가 왔어요?</strong> (nuga wasseoyo?)<br>
+         แปล: ใครมา?
+       </div>
+      </div>
+      <div class="grammar-card">
+       <div class="grammar-title">
+        5. 에 - บุพบท "ที่/ใน"
+       </div>
+       <div class="grammar-explanation">
+        ใช้บอกสถานที่หรือเวลา ติดหลังคำนาม
+       </div>
+       <div class="grammar-example"><strong>학교에 가다</strong> (hakgyo-e gada)<br>
+         แปล: ไปที่โรงเรียน<br><br><strong>3시에</strong> (sam-si-e)<br>
+         แปล: ตอน 3 โมง
+       </div>
+      </div>
+      <div class="grammar-card">
+       <div class="grammar-title">
+        6. 에서 - บุพบท "ที่" (กระทำกิจกรรม)
+       </div>
+       <div class="grammar-explanation">
+        ใช้บอกสถานที่ที่เกิดเหตุการณ์หรือกิจกรรม
+       </div>
+       <div class="grammar-example"><strong>도서관에서 공부하다</strong> (doseogwan-eseo gongbuhada)<br>
+         แปล: เรียนที่ห้องสมุด
+       </div>
+      </div>
+      <div class="grammar-card">
+       <div class="grammar-title">
+        7. 고 - คำเชื่อม "และ"
+       </div>
+       <div class="grammar-explanation">
+        ใช้เชื่อมคำกริยาหรือคำคุณศัพท์สองคำเข้าด้วยกัน
+       </div>
+       <div class="grammar-example"><strong>밥을 먹고 자다</strong> (bap-eul meokgo jada)<br>
+         แปล: กินข้าวและนอน
+       </div>
+      </div>
+      <div class="grammar-card">
+       <div class="grammar-title">
+        8. 지만 - คำเชื่อม "แต่"
+       </div>
+       <div class="grammar-explanation">
+        ใช้แสดงความขัดแย้งหรือตรงกันข้าม
+       </div>
+       <div class="grammar-example"><strong>비싸지만 좋아요</strong> (bissajiman joayo)<br>
+         แปล: แพงแต่ดี
+       </div>
+      </div>
+      <div class="grammar-card">
+       <div class="grammar-title">
+        9. 아요/어요 - รูปสุภาพ (ปัจจุบัน)
+       </div>
+       <div class="grammar-explanation">
+        รูปแบบสุภาพของคำกริยาในกาลปัจจุบัน<br>
+         • 아요 (ayo) = ใช้กับสระ ㅏ, ㅗ<br>
+         • 어요 (eoyo) = ใช้กับสระอื่นๆ
+       </div>
+       <div class="grammar-example"><strong>가다 → 가요</strong> (gada → gayo) = ไป<br><strong>먹다 → 먹어요</strong> (meokda → meogeoyo) = กิน
+       </div>
+      </div>
+      <div class="grammar-card">
+       <div class="grammar-title">
+        10. 았/었 - อดีตกาล
+       </div>
+       <div class="grammar-explanation">
+        ใช้แสดงเหตุการณ์ในอดีต<br>
+         • 았 (at) = ใช้กับสระ ㅏ, ㅗ<br>
+         • 었 (eot) = ใช้กับสระอื่นๆ
+       </div>
+       <div class="grammar-example"><strong>갔어요</strong> (gasseoyo) = ไปแล้ว<br><strong>먹었어요</strong> (meogeosseoyo) = กินแล้ว
+       </div>
+      </div>
+     </div>
+    </section>
+   </main>
+  </div>
+  <div class="toast" id="toast"></div>
+  <script>
+        // ข้อมูลเกม
+        const gameData = {
+            level1: [],
+            level2: [
+                { question: "พ่อ", options: ["아빠", "엄마", "형", "누나"], answer: "아빠" },
+                { question: "แม่", options: ["아빠", "엄마", "동생", "할머니"], answer: "엄마" },
+                { question: "ข้าว", options: ["밥", "물", "김치", "라면"], answer: "밥" },
+                { question: "น้ำ", options: ["밥", "물", "고기", "과일"], answer: "물" },
+                { question: "กิมจิ", options: ["김치", "라면", "밥", "물"], answer: "김치" },
+                { question: "แดง", options: ["빨강", "파랑", "노랑", "초록"], answer: "빨강" },
+                { question: "น้ำเงิน", options: ["빨강", "파랑", "검정", "하양"], answer: "파랑" },
+                { question: "เหลือง", options: ["노랑", "초록", "빨강", "파랑"], answer: "노랑" },
+                { question: "หนึ่ง", options: ["하나", "둘", "셋", "넷"], answer: "하나" },
+                { question: "สอง", options: ["하나", "둘", "다섯", "여섯"], answer: "둘" }
+            ],
+            level3: [
+                { question: "สวัสดี", options: ["안녕하세요", "감사합니다", "미안해요", "괜찮아요"], answer: "안녕하세요" },
+                { question: "ขอบคุณ", options: ["안녕하세요", "감사합니다", "죄송합니다", "사랑해요"], answer: "감사합니다" },
+                { question: "ขอโทษ", options: ["미안해요", "괜찮아요", "안녕히 가세요", "잘 먹겠습니다"], answer: "미안해요" },
+                { question: "ไม่เป็นไร", options: ["괜찮아요", "미안해요", "고마워요", "사랑해요"], answer: "괜찮아요" },
+                { question: "ฉันรักคุณ", options: ["사랑해요", "좋아해요", "감사합니다", "미안해요"], answer: "사랑해요" },
+                { question: "ลาก่อน", options: ["안녕히 가세요", "안녕하세요", "감사합니다", "괜찮아요"], answer: "안녕히 가세요" },
+                { question: "ขอรับอาหาร", options: ["잘 먹겠습니다", "맛있어요", "배불러요", "고마워요"], answer: "잘 먹겠습니다" },
+                { question: "อร่อย", options: ["맛있어요", "배불러요", "괜찮아요", "좋아해요"], answer: "맛있어요" },
+                { question: "อิ่มแล้ว", options: ["배불러요", "맛있어요", "좋아해요", "감사합니다"], answer: "배불러요" },
+                { question: "คิดถึง", options: ["보고 싶어요", "사랑해요", "좋아해요", "괜찮아요"], answer: "보고 싶어요" }
+            ],
+            level4: [
+                { question: "พี่ชาย", options: ["형", "누나", "동생", "아빠"], answer: "형" },
+                { question: "ราเมง", options: ["라면", "밥", "김치", "물"], answer: "라면" },
+                { question: "เขียว", options: ["초록", "빨강", "파랑", "노랑"], answer: "초록" },
+                { question: "สาม", options: ["셋", "넷", "하나", "둘"], answer: "셋" },
+                { question: "ขอบคุณมาก", options: ["감사합니다", "미안합니다", "사랑합니다", "안녕하세요"], answer: "감사합니다" },
+                { question: "น้อง", options: ["동생", "형", "누나", "엄마"], answer: "동생" },
+                { question: "เนื้อ", options: ["고기", "밥", "물", "김치"], answer: "고기" },
+                { question: "ดำ", options: ["검정", "하양", "빨강", "파랑"], answer: "검정" },
+                { question: "ห้า", options: ["다섯", "여섯", "하나", "셋"], answer: "다섯" },
+                { question: "ชอบ", options: ["좋아해요", "사랑해요", "감사해요", "미안해요"], answer: "좋아해요" }
+            ]
+        };
+
+        // ข้อมูลเกมจับคู่การ์ด Level 1
+        const memoryPairs = [
+            { thai: "ก", korean: "ㄱ" },
+            { thai: "น", korean: "ㄴ" },
+            { thai: "ด", korean: "ㄷ" },
+            { thai: "ร/ล", korean: "ㄹ" },
+            { thai: "ม", korean: "ㅁ" },
+            { thai: "บ", korean: "ㅂ" },
+            { thai: "ซ", korean: "ㅅ" },
+            { thai: "จ", korean: "ㅈ" }
+        ];
+
+        let currentLevel = 1;
+        let currentQuestions = [];
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let hearts = 3;
+        let highScores = [];
+        
+        // ตัวแปรสำหรับเกมจับคู่
+        let memoryCards = [];
+        let flippedCards = [];
+        let matchedPairs = 0;
+        let canFlip = true;
+        
+        // ตัวแปรสำหรับจับเวลา
+        let gameTimer = null;
+        let timeRemaining = 120; // 2 นาที = 120 วินาที
+
+        const defaultConfig = {
+            site_title: "HORANG HERO KOREAN WEBSITE",
+            welcome_heading: "ยินดีต้อนรับสู่ HORANG HERO 🐯",
+            card_1_title: "สระและพยัญชนะ",
+            card_1_description: "เรียนรู้ตัวอักษรเกาหลี ฮันกึล (한글) ตั้งแต่เริ่มต้น พยัญชนะเดี่ยว พยัญชนะคู่ และสระทั้งหมด",
+            card_2_title: "คำศัพท์พื้นฐาน",
+            card_2_description: "คำศัพท์ที่ใช้บ่อยในชีวิตประจำวัน ครอบครัว อาหาร สี ตัวเลข และอีกมากมาย",
+            card_3_title: "แบบฝึกหัด",
+            card_3_description: "เกม 4 ด่าน! จับคู่ตัวอักษร ทายคำศัพท์ ประโยคในชีวิตจริง และโหมดเซียน พร้อมระบบคะแนน",
+            card_4_title: "ไวยากรณ์",
+            card_4_description: "10 ไวยากรณ์พื้นฐานที่ต้องรู้! เรียนรู้โครงสร้างประโยคและการใช้ภาษาเกาหลีอย่างถูกต้อง"
+        };
+
+        function showPage(pageId) {
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(pageId).classList.add('active');
+
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+                if (link.dataset.page === pageId) {
+                    link.classList.add('active');
+                }
+            });
+
+            if (pageId === 'practice') {
+                backToLevelSelect();
+            }
+        }
+
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                showPage(this.dataset.page);
+            });
+        });
+
+        function shuffleArray(array) {
+            const newArray = [...array];
+            for (let i = newArray.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+            }
+            return newArray;
+        }
+
+        function startGame(level) {
+            currentLevel = level;
+            score = 0;
+            hearts = 3;
+
+            document.getElementById('level-select').style.display = 'none';
+            document.getElementById('game-play').classList.add('active');
+            document.getElementById('game-result').classList.remove('active');
+
+            updateScore();
+
+            if (level === 1) {
+                // เกมจับคู่การ์ด - ใช้ตัวจับเวลา
+                document.getElementById('hearts').style.display = 'none';
+                document.getElementById('timer').style.display = 'block';
+                timeRemaining = 120;
+                updateTimer();
+                startTimer();
+                initMemoryGame();
+            } else {
+                // เกมคำถาม-คำตอบ - ใช้หัวใจ
+                document.getElementById('hearts').style.display = 'block';
+                document.getElementById('timer').style.display = 'none';
+                updateHearts();
+                const levelKey = `level${level}`;
+                currentQuestions = shuffleArray(gameData[levelKey]);
+                currentQuestionIndex = 0;
+                loadQuestion();
+            }
+        }
+
+        function startTimer() {
+            gameTimer = setInterval(() => {
+                timeRemaining--;
+                updateTimer();
+
+                if (timeRemaining <= 0) {
+                    clearInterval(gameTimer);
+                    showToast('⏰ หมดเวลา!', '#f44336');
+                    setTimeout(() => {
+                        endGame();
+                    }, 1500);
+                }
+            }, 1000);
+        }
+
+        function stopTimer() {
+            if (gameTimer) {
+                clearInterval(gameTimer);
+                gameTimer = null;
+            }
+        }
+
+        function updateTimer() {
+            const minutes = Math.floor(timeRemaining / 60);
+            const seconds = timeRemaining % 60;
+            const timeDisplay = document.getElementById('time-display');
+            timeDisplay.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+
+            const timerElement = document.getElementById('timer');
+            if (timeRemaining <= 30) {
+                timerElement.classList.add('warning');
+            } else {
+                timerElement.classList.remove('warning');
+            }
+        }
+
+        function initMemoryGame() {
+            matchedPairs = 0;
+            flippedCards = [];
+            canFlip = true;
+
+            memoryCards = [];
+            memoryPairs.forEach((pair, index) => {
+                memoryCards.push({ id: index, text: pair.thai, pairId: index, type: 'thai' });
+                memoryCards.push({ id: index + 100, text: pair.korean, pairId: index, type: 'korean' });
+            });
+
+            memoryCards = shuffleArray(memoryCards);
+
+            document.getElementById('question-text').textContent = '🎮 จับคู่ตัวอักษรไทยกับเกาหลี ภายใน 2 นาที!';
+            document.getElementById('question-counter').textContent = `จับคู่ได้: ${matchedPairs}/${memoryPairs.length}`;
+
+            const optionsContainer = document.getElementById('options');
+            optionsContainer.innerHTML = '';
+            optionsContainer.className = 'memory-card-grid';
+
+            memoryCards.forEach((card, index) => {
+                const cardDiv = document.createElement('div');
+                cardDiv.className = 'memory-card';
+                cardDiv.dataset.cardIndex = index;
+                cardDiv.dataset.pairId = card.pairId;
+                cardDiv.innerHTML = `
+                    <div class="card-back">🐯</div>
+                    <div class="card-front">${card.text}</div>
+                `;
+                cardDiv.onclick = () => flipCard(index);
+                optionsContainer.appendChild(cardDiv);
+            });
+        }
+
+        function flipCard(index) {
+            if (!canFlip) return;
+
+            const card = document.querySelector(`[data-card-index="${index}"]`);
+            if (card.classList.contains('flipped') || card.classList.contains('matched')) return;
+
+            card.classList.add('flipped');
+            flippedCards.push(index);
+
+            if (flippedCards.length === 2) {
+                canFlip = false;
+                checkMemoryMatch();
+            }
+        }
+
+        function checkMemoryMatch() {
+            const [index1, index2] = flippedCards;
+            const card1 = document.querySelector(`[data-card-index="${index1}"]`);
+            const card2 = document.querySelector(`[data-card-index="${index2}"]`);
+
+            const pairId1 = parseInt(card1.dataset.pairId);
+            const pairId2 = parseInt(card2.dataset.pairId);
+
+            if (pairId1 === pairId2) {
+                // ถูกต้อง!
+                setTimeout(() => {
+                    card1.classList.add('matched');
+                    card2.classList.add('matched');
+                    matchedPairs++;
+                    score += 10;
+                    updateScore();
+                    document.getElementById('question-counter').textContent = `จับคู่ได้: ${matchedPairs}/${memoryPairs.length}`;
+                    showToast('✅ ถูกต้อง! +10 คะแนน', '#4CAF50');
+
+                    flippedCards = [];
+                    canFlip = true;
+
+                    if (matchedPairs === memoryPairs.length) {
+                        stopTimer();
+                        // คำนวณโบนัสเวลา
+                        const timeBonus = timeRemaining * 2;
+                        score += timeBonus;
+                        showToast(`🎉 ชนะ! โบนัสเวลา +${timeBonus} คะแนน`, '#FFD700');
+                        setTimeout(() => {
+                            endGame();
+                        }, 2000);
+                    }
+                }, 500);
+            } else {
+                // ผิด!
+                setTimeout(() => {
+                    card1.classList.add('wrong');
+                    card2.classList.add('wrong');
+                    showToast('❌ ผิด! ลองใหม่', '#f44336');
+
+                    setTimeout(() => {
+                        card1.classList.remove('flipped', 'wrong');
+                        card2.classList.remove('flipped', 'wrong');
+                        flippedCards = [];
+                        canFlip = true;
+                    }, 1000);
+                }, 500);
+            }
+        }
+
+        function loadQuestion() {
+            if (currentQuestionIndex >= currentQuestions.length) {
+                endGame();
+                return;
+            }
+
+            const question = currentQuestions[currentQuestionIndex];
+            document.getElementById('question-text').textContent = question.question;
+            document.getElementById('question-counter').textContent = 
+                `คำถามที่ ${currentQuestionIndex + 1}/${currentQuestions.length}`;
+
+            const optionsContainer = document.getElementById('options');
+            optionsContainer.innerHTML = '';
+            optionsContainer.className = 'options-grid';
+
+            const shuffledOptions = shuffleArray(question.options);
+            shuffledOptions.forEach(option => {
+                const btn = document.createElement('button');
+                btn.className = 'option-btn';
+                btn.textContent = option;
+                btn.onclick = () => checkAnswer(option, btn);
+                optionsContainer.appendChild(btn);
+            });
+        }
+
+        function checkAnswer(selected, btn) {
+            const question = currentQuestions[currentQuestionIndex];
+            const allButtons = document.querySelectorAll('.option-btn');
+            
+            allButtons.forEach(b => b.disabled = true);
+
+            if (selected === question.answer) {
+                btn.classList.add('correct');
+                score += 10;
+                updateScore();
+                showToast('✅ ถูกต้อง! +10 คะแนน', '#4CAF50');
+                
+                setTimeout(() => {
+                    currentQuestionIndex++;
+                    loadQuestion();
+                }, 1500);
+            } else {
+                btn.classList.add('wrong');
+                hearts--;
+                updateHearts();
+                showToast('❌ ผิด! เสียหัวใจ 1 ดวง', '#f44336');
+
+                allButtons.forEach(b => {
+                    if (b.textContent === question.answer) {
+                        b.classList.add('correct');
+                    }
+                });
+
+                if (hearts <= 0) {
+                    setTimeout(() => {
+                        endGame();
+                    }, 2000);
+                } else {
+                    setTimeout(() => {
+                        currentQuestionIndex++;
+                        loadQuestion();
+                    }, 2000);
+                }
+            }
+        }
+
+        function updateHearts() {
+            const heartsDisplay = document.getElementById('hearts');
+            heartsDisplay.textContent = '❤️'.repeat(hearts) + '🖤'.repeat(3 - hearts);
+        }
+
+        function updateScore() {
+            document.getElementById('score').textContent = score;
+        }
+
+        function showToast(message, color) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.style.background = color;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2000);
+        }
+
+        async function endGame() {
+            stopTimer();
+            
+            document.getElementById('game-play').classList.remove('active');
+            document.getElementById('game-result').classList.add('active');
+            document.getElementById('final-score').textContent = `${score} คะแนน`;
+
+            let message = '';
+            if (score >= 80) message = '🏆 ยอดเยี่ยมมาก! คุณเก่งมาก!';
+            else if (score >= 60) message = '⭐ ดีมาก! คุณทำได้ดี!';
+            else if (score >= 40) message = '👍 ดีแล้ว! พยายามต่อไป!';
+            else message = '💪 ลองใหม่อีกครั้งนะ!';
+
+            document.getElementById('result-message').textContent = message;
+
+            const recordData = {
+                level: currentLevel,
+                score: score,
+                completed_at: new Date().toISOString()
+            };
+
+            if (window.dataSdk) {
+                const result = await window.dataSdk.create(recordData);
+                if (!result.isOk) {
+                    console.error('Failed to save score');
+                }
+            }
+        }
+
+        function backToLevelSelect() {
+            stopTimer();
+            document.getElementById('level-select').style.display = 'block';
+            document.getElementById('game-play').classList.remove('active');
+            document.getElementById('game-result').classList.remove('active');
+        }
+
+        function displayHighScores(scores) {
+            const scoresList = document.getElementById('scores-list');
+            
+            if (!scores || scores.length === 0) {
+                scoresList.innerHTML = '<li style="text-align: center; color: #718096;">ยังไม่มีคะแนน เริ่มเล่นเกมเลย!</li>';
+                return;
+            }
+
+            const levelNames = {
+                1: 'Level 1: ง่าย',
+                2: 'Level 2: ปานกลาง',
+                3: 'Level 3: ยาก',
+                4: 'Level 4: เซียน'
+            };
+
+            const groupedScores = {};
+            scores.forEach(record => {
+                if (!groupedScores[record.level] || groupedScores[record.level] < record.score) {
+                    groupedScores[record.level] = record.score;
+                }
+            });
+
+            const sortedLevels = Object.keys(groupedScores).sort((a, b) => a - b);
+            
+            scoresList.innerHTML = sortedLevels.map(level => `
+                <li class="score-item">
+                    <span class="score-level">${levelNames[level]}</span>
+                    <span class="score-points">${groupedScores[level]} คะแนน</span>
+                </li>
+            `).join('');
+        }
+
+        async function onConfigChange(config) {
+            document.getElementById('site-title').textContent = config.site_title || defaultConfig.site_title;
+            document.getElementById('welcome-heading').textContent = config.welcome_heading || defaultConfig.welcome_heading;
+            document.getElementById('card-1-title').textContent = config.card_1_title || defaultConfig.card_1_title;
+            document.getElementById('card-1-description').textContent = config.card_1_description || defaultConfig.card_1_description;
+            document.getElementById('card-2-title').textContent = config.card_2_title || defaultConfig.card_2_title;
+            document.getElementById('card-2-description').textContent = config.card_2_description || defaultConfig.card_2_description;
+            document.getElementById('card-3-title').textContent = config.card_3_title || defaultConfig.card_3_title;
+            document.getElementById('card-3-description').textContent = config.card_3_description || defaultConfig.card_3_description;
+            document.getElementById('card-4-title').textContent = config.card_4_title || defaultConfig.card_4_title;
+            document.getElementById('card-4-description').textContent = config.card_4_description || defaultConfig.card_4_description;
+        }
+
+        function mapToEditPanelValues(config) {
+            return new Map([
+                ["site_title", config.site_title || defaultConfig.site_title],
+                ["welcome_heading", config.welcome_heading || defaultConfig.welcome_heading],
+                ["card_1_title", config.card_1_title || defaultConfig.card_1_title],
+                ["card_1_description", config.card_1_description || defaultConfig.card_1_description],
+                ["card_2_title", config.card_2_title || defaultConfig.card_2_title],
+                ["card_2_description", config.card_2_description || defaultConfig.card_2_description],
+                ["card_3_title", config.card_3_title || defaultConfig.card_3_title],
+                ["card_3_description", config.card_3_description || defaultConfig.card_3_description],
+                ["card_4_title", config.card_4_title || defaultConfig.card_4_title],
+                ["card_4_description", config.card_4_description || defaultConfig.card_4_description]
+            ]);
+        }
+
+        const dataHandler = {
+            onDataChanged(data) {
+                highScores = data;
+                displayHighScores(data);
+            }
+        };
+
+        async function initApp() {
+            if (window.dataSdk) {
+                const initResult = await window.dataSdk.init(dataHandler);
+                if (!initResult.isOk) {
+                    console.error('Failed to initialize data SDK');
+                }
+            }
+
+            if (window.elementSdk) {
+                window.elementSdk.init({
+                    defaultConfig: defaultConfig,
+                    onConfigChange: onConfigChange,
+                    mapToCapabilities: () => ({
+                        recolorables: [],
+                        borderables: [],
+                        fontEditable: undefined,
+                        fontSizeable: undefined
+                    }),
+                    mapToEditPanelValues: mapToEditPanelValues
+                });
+            }
+        }
+
+        initApp();
+    </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9a4acad194bb9b8d',t:'MTc2NDE3NDg1Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
